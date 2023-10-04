@@ -2,7 +2,7 @@
 function InProgressTaskBox({ title, description, status, dueDate, dueTime }) {
   return (
     <li className={`task-box ${status}`}>
-      <h1>{title}</h1>
+      <h2>{title}</h2>
       <pre>{description}</pre>
       <div>
         <p>{`Due Date: ${dueDate}`}</p>
