@@ -6,6 +6,7 @@ import Completed from "./components/Completed";
 import { useState } from "react";
 
 function App() {
+  // Handle Click Interactions
   const [isScheduledTaskOpen, setIsScheduledTaskOpen] = useState(true);
   const [isInProgressTaskOpen, setIsInProgressTaskOpen] = useState(false);
   const [isCompletedTaskOpen, setIsCompletedTaskOpen] = useState(false);
@@ -25,10 +26,29 @@ function App() {
     setIsCompletedTaskOpen(true);
   }
 
+  // Handle Add New Screen
   const [isAddNewOpen, setIsAddNewOpen] = useState(false);
   function handleAddNew() {
     setIsAddNewOpen(!isAddNewOpen);
   }
+
+  // Handle Task Form
+  const [taskData, setTaskData] = useState({
+    taskTitle: "",
+    taskDetail: "",
+    taskDueDate: "",
+    taskDueTime: "",
+  });
+
+  function handleTaskInput(event) {
+    setTaskData((prevTaskData) => {
+      return {
+        ...prevTaskData,
+        [event.target.name]: event.target.value,
+      };
+    });
+  }
+  console.log(taskData);
 
   return (
     <>
@@ -48,10 +68,30 @@ function App() {
       </div>
       {isAddNewOpen && (
         <form>
-          <input type="text" placeholder="What do you want to do?" />
-          <input type="paragraph" placeholder="Break it down" />
-          <input type="date" placeholder="Deadline" />
-          <input type="time" placeholder="Time" />
+          <input
+            type="text"
+            placeholder="What do you want to do?"
+            name="taskTitle"
+            onChange={handleTaskInput}
+          />
+          <input
+            type="paragraph"
+            placeholder="Break it down"
+            name="taskDetail"
+            onChange={handleTaskInput}
+          />
+          <input
+            type="date"
+            placeholder="Deadline"
+            name="taskDueDate"
+            onChange={handleTaskInput}
+          />
+          <input
+            type="time"
+            placeholder="Time"
+            name="taskDueTime"
+            onChange={handleTaskInput}
+          />
           <button type="submit">Add Task</button>
         </form>
       )}
