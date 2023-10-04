@@ -1,7 +1,7 @@
 // eslint-disable-next-line react/prop-types
 function ScheduledTaskBox({ title, description, status, dueDate, dueTime }) {
   return (
-    <li className="task-box">
+    <li className={`task-box ${status}`}>
       <h1>{title}</h1>
       <pre>{description}</pre>
       <div>
