@@ -68,6 +68,7 @@ function App() {
     tasks.push(taskData);
     localStorage.setItem("tasks", JSON.stringify(tasks));
     setIsAddNewOpen(false);
+    setIsScheduledTaskOpen(true);
   }
 
   return (

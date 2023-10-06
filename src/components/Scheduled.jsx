@@ -20,6 +20,14 @@ function Scheduled() {
     setScheduledTasksData(startedTasks);
   };
 
+  const deleteTask = (title) => {
+    const deletedTasks = scheduledTasksData.filter(
+      (task) => task.taskTitle !== title
+    );
+    localStorage.setItem("tasks", JSON.stringify(deletedTasks));
+    setScheduledTasksData(deletedTasks);
+  };
+
   return (
     <div>
       <h2>Scheduled</h2>
@@ -36,8 +44,8 @@ function Scheduled() {
                 dueDate={task.taskDueDate}
                 dueTime={task.taskDueTime}
                 onStart={() => startTask(task.taskTitle)}
+                onDelete={() => deleteTask(task.taskTitle)}
                 // onEdit={}
-                // onDelete={}
               />
             );
           })}
