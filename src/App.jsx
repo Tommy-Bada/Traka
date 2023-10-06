@@ -1,10 +1,8 @@
 import "./App.css";
-// import Control from "./components/Control";
 import Scheduled from "./components/Scheduled";
 import InProgress from "./components/InProgress";
 import Completed from "./components/Completed";
 import { useState } from "react";
-// import { useEffect } from "react";
 
 function App() {
   // Handle Click Interactions
@@ -53,28 +51,24 @@ function App() {
 
   function handleTaskSubmit(event) {
     event.preventDefault();
-    console.log(taskData);
+    setTaskData({
+      taskTitle: "",
+      taskDetail: "",
+      taskDueDate: "",
+      taskDueTime: "",
+      status: "scheduled",
+    });
     let tasks;
     if (localStorage.getItem("tasks") === null) {
       tasks = [];
     } else {
       tasks = JSON.parse(localStorage.getItem("tasks"));
     }
+    console.log(tasks);
     tasks.push(taskData);
     localStorage.setItem("tasks", JSON.stringify(tasks));
+    setIsAddNewOpen(false);
   }
-
-  //Add inputed data to local storage
-  // useEffect(() => {
-  //   let tasks;
-  //   if (localStorage.getItem("tasks") === null) {
-  //     tasks = [];
-  //   } else {
-  //     tasks = JSON.parse(localStorage.getItem("tasks"));
-  //   }
-  //   tasks.push(taskData);
-  //   localStorage.setItem("tasks", JSON.stringify(tasks));
-  // });
 
   return (
     <>

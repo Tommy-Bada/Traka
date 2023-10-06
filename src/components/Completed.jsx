@@ -1,9 +1,35 @@
+import { useState, useEffect } from "react";
+import CompletedTaskBox from "./CompletedTaskBox";
 function Completed() {
+  const [completedProgressTasksData, setCompletedProgressTasksData] = useState(
+    []
+  );
+
+  useEffect(() => {
+    const tasks = JSON.parse(localStorage.getItem("tasks"));
+    if (tasks) {
+      setCompletedProgressTasksData(tasks);
+    }
+  }, []);
+
   return (
     <div>
       <h2>Completed</h2>
       <ul>
-        <li>Completed Task</li>
+        {completedProgressTasksData
+          .filter((task) => task.status === "completed")
+          .map((task, index) => {
+            return (
+              <CompletedTaskBox
+                key={index}
+                title={task.taskTitle}
+                description={task.taskDetail}
+                // status={task.status}
+                // dueDate={task.taskDueDate}
+                // dueTime={task.taskDueTime}
+              />
+            );
+          })}
       </ul>
     </div>
   );

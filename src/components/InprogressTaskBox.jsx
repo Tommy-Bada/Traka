@@ -1,5 +1,13 @@
+/* eslint-disable react/prop-types */
 // eslint-disable-next-line react/prop-types
-function InProgressTaskBox({ title, description, status, dueDate, dueTime }) {
+function InProgressTaskBox({
+  title,
+  description,
+  status,
+  dueDate,
+  dueTime,
+  onCompleted,
+}) {
   return (
     <li className={`task-box ${status}`}>
       <h2>{title}</h2>
@@ -10,7 +18,7 @@ function InProgressTaskBox({ title, description, status, dueDate, dueTime }) {
       </div>
       <p>{status}</p>
       <div>
-        <button>Completed</button>
+        <button onClick={onCompleted}>Completed</button>
       </div>
     </li>
   );
