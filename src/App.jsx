@@ -34,6 +34,14 @@ function App() {
     setIsCompletedTaskOpen(false);
   }
 
+  //Handle Clear tasks
+  function handleClearTaks() {
+    localStorage.clear();
+    setIsScheduledTaskOpen(false);
+    setIsInProgressTaskOpen(false);
+    setIsCompletedTaskOpen(false);
+  }
+
   // Handle Task Form
   const [taskData, setTaskData] = useState({
     taskTitle: "",
@@ -98,6 +106,9 @@ function App() {
           <li onClick={handleShowInProgressTask}>In Progress</li>
           <li onClick={handleShowCompletedTask}>Completed</li>
         </ul>
+        <div>
+          <button onClick={handleClearTaks}>Clear All</button>
+        </div>
       </div>
       {isAddNewOpen && (
         <form onSubmit={handleTaskSubmit}>
