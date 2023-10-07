@@ -11,6 +11,37 @@ function Scheduled() {
     }
   }, []);
 
+  // Define a custom sorting function
+  const [taskSorted, setTaskSorted] = useState(false);
+
+  function sortByDateAndTime(tasks) {
+    return tasks.slice().sort((a, b) => {
+      const dateA = new Date(a.taskDueDate).getTime();
+      const dateB = new Date(b.taskDueDate).getTime();
+      // console.log(typeof parseInt(a.taskDueTime), typeof b.taskDueTime);
+      if (dateA === dateB) {
+        const timeA = a.taskDueTime.split(":").map(Number);
+        const timeB = b.taskDueTime.split(":").map(Number);
+
+        if (timeA[0] !== timeB[0]) {
+          return timeA[0] - timeB[0]; // Compare hours
+        } else {
+          return timeA[1] - timeB[1]; // Compare minutes if hours are the same
+        }
+      }
+
+      return dateA - dateB;
+    });
+  }
+  console.log(scheduledTasksData);
+  // Usage in your component
+  const handleSortByDateAndTime = () => {
+    const sorted = sortByDateAndTime(scheduledTasksData);
+    console.log(sorted);
+    setScheduledTasksData(sorted);
+    setTaskSorted(true);
+  };
+
   const startTask = (title) => {
     const startedTasks = scheduledTasksData.map((task) =>
       task.taskTitle === title ? { ...task, status: "in-progress" } : task
@@ -77,6 +108,7 @@ function Scheduled() {
   return (
     <div>
       <h2>Scheduled</h2>
+      {taskSorted || <button onClick={handleSortByDateAndTime}>Sort</button>}
       <div>
         {isEditing && (
           <form onSubmit={handleUpdate}>
