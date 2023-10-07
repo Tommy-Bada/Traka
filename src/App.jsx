@@ -93,24 +93,28 @@ function App() {
             type="text"
             placeholder="What do you want to do?"
             name="taskTitle"
+            value={taskData.taskTitle}
             onChange={handleTaskInput}
           />
           <input
             type="paragraph"
             placeholder="Break it down"
             name="taskDetail"
+            value={taskData.taskDetail}
             onChange={handleTaskInput}
           />
           <input
             type="date"
             placeholder="Deadline"
             name="taskDueDate"
+            value={taskData.taskDueDate}
             onChange={handleTaskInput}
           />
           <input
             type="time"
             placeholder="Time"
             name="taskDueTime"
+            value={taskData.taskDueTime}
             onChange={handleTaskInput}
           />
           <button type="submit">Add Task</button>

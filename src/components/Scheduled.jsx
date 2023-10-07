@@ -28,9 +28,77 @@ function Scheduled() {
     setScheduledTasksData(deletedTasks);
   };
 
+  const [isEditing, setIsEditing] = useState(false);
+
+  const [updatedTask, setUpdatedTask] = useState([]);
+  const [taskToUpdate, setTaskToUpdate] = useState("");
+
+  const editTask = (title) => {
+    const taskToEdit = scheduledTasksData.filter(
+      (task) => task.taskTitle === title && task.status === "scheduled"
+    );
+    console.log(taskToEdit[0].taskTitle);
+    setTaskToUpdate(taskToEdit[0].taskTitle);
+    setUpdatedTask(taskToEdit[0]);
+
+    setIsEditing(true);
+  };
+
+  function handleChange(event) {
+    setUpdatedTask((prevTaskData) => {
+      return {
+        ...prevTaskData,
+        [event.target.name]: event.target.value,
+      };
+    });
+  }
+
+  function handleUpdate(event) {
+    event.preventDefault();
+    console.log("this text", taskToUpdate);
+    const updatedTasks = scheduledTasksData.filter(
+      (task) => task.taskTitle !== taskToUpdate
+    );
+    updatedTasks.push(updatedTask);
+    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+    setScheduledTasksData(updatedTasks);
+    setIsEditing(false);
+  }
+
   return (
     <div>
       <h2>Scheduled</h2>
+      <div>
+        {isEditing && (
+          <form onSubmit={handleUpdate}>
+            <input
+              type="text"
+              name="taskTitle"
+              value={updatedTask.taskTitle}
+              onChange={handleChange}
+            />
+            <input
+              type="paragraph"
+              name="taskDetail"
+              value={updatedTask.taskDetail}
+              onChange={handleChange}
+            />
+            <input
+              type="date"
+              name="taskDueDate"
+              value={updatedTask.taskDueDate}
+              onChange={handleChange}
+            />
+            <input
+              type="time"
+              name="taskDueTime"
+              value={updatedTask.taskDueTime}
+              onChange={handleChange}
+            />
+            <button type="submit">Update Task</button>
+          </form>
+        )}
+      </div>
       <ul>
         {scheduledTasksData
           .filter((task) => task.status === "scheduled")
@@ -45,7 +113,7 @@ function Scheduled() {
                 dueTime={task.taskDueTime}
                 onStart={() => startTask(task.taskTitle)}
                 onDelete={() => deleteTask(task.taskTitle)}
-                // onEdit={}
+                onEdit={() => editTask(task.taskTitle)}
               />
             );
           })}
