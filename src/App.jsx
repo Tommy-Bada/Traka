@@ -6,7 +6,7 @@ import { useState } from "react";
 
 function App() {
   // Handle Click Interactions
-  const [isScheduledTaskOpen, setIsScheduledTaskOpen] = useState(true);
+  const [isScheduledTaskOpen, setIsScheduledTaskOpen] = useState(false);
   const [isInProgressTaskOpen, setIsInProgressTaskOpen] = useState(false);
   const [isCompletedTaskOpen, setIsCompletedTaskOpen] = useState(false);
   function handleShowScheduledTask() {
@@ -29,6 +29,9 @@ function App() {
   const [isAddNewOpen, setIsAddNewOpen] = useState(false);
   function handleAddNew() {
     setIsAddNewOpen(!isAddNewOpen);
+    setIsScheduledTaskOpen(false);
+    setIsInProgressTaskOpen(false);
+    setIsCompletedTaskOpen(false);
   }
 
   // Handle Task Form

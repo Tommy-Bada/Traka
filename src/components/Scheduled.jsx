@@ -109,23 +109,24 @@ function Scheduled() {
         )}
       </div>
       <ul>
-        {scheduledTasksData
-          .filter((task) => task.status === "scheduled")
-          .map((task, index) => {
-            return (
-              <ScheduledTaskBox
-                key={index}
-                title={task.taskTitle}
-                description={task.taskDetail}
-                status={task.status}
-                dueDate={task.taskDueDate}
-                dueTime={task.taskDueTime}
-                onStart={() => startTask(task.taskTitle)}
-                onDelete={() => deleteTask(task.taskTitle)}
-                onEdit={() => editTask(task.taskTitle)}
-              />
-            );
-          })}
+        {isEditing ||
+          scheduledTasksData
+            .filter((task) => task.status === "scheduled")
+            .map((task, index) => {
+              return (
+                <ScheduledTaskBox
+                  key={index}
+                  title={task.taskTitle}
+                  description={task.taskDetail}
+                  status={task.status}
+                  dueDate={task.taskDueDate}
+                  dueTime={task.taskDueTime}
+                  onStart={() => startTask(task.taskTitle)}
+                  onDelete={() => deleteTask(task.taskTitle)}
+                  onEdit={() => editTask(task.taskTitle)}
+                />
+              );
+            })}
       </ul>
     </div>
   );
