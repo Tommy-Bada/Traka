@@ -55,14 +55,23 @@ function Scheduled() {
 
   function handleUpdate(event) {
     event.preventDefault();
-    console.log("this text", taskToUpdate);
-    const updatedTasks = scheduledTasksData.filter(
-      (task) => task.taskTitle !== taskToUpdate
-    );
-    updatedTasks.push(updatedTask);
-    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
-    setScheduledTasksData(updatedTasks);
-    setIsEditing(false);
+    if (
+      updatedTask.taskTitle == "" ||
+      updatedTask.taskDetail == "" ||
+      updatedTask.taskDueDate == "" ||
+      updatedTask.taskDueTime == ""
+    ) {
+      alert("Please input all your task information");
+    } else {
+      console.log("this text", taskToUpdate);
+      const updatedTasks = scheduledTasksData.filter(
+        (task) => task.taskTitle !== taskToUpdate
+      );
+      updatedTasks.push(updatedTask);
+      localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+      setScheduledTasksData(updatedTasks);
+      setIsEditing(false);
+    }
   }
 
   return (

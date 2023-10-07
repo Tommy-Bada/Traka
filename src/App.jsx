@@ -51,24 +51,33 @@ function App() {
 
   function handleTaskSubmit(event) {
     event.preventDefault();
-    setTaskData({
-      taskTitle: "",
-      taskDetail: "",
-      taskDueDate: "",
-      taskDueTime: "",
-      status: "scheduled",
-    });
-    let tasks;
-    if (localStorage.getItem("tasks") === null) {
-      tasks = [];
+    if (
+      taskData.taskTitle == "" ||
+      taskData.taskDetail == "" ||
+      taskData.taskDueDate == "" ||
+      taskData.taskDueTime == ""
+    ) {
+      alert("Please input all your task information");
     } else {
-      tasks = JSON.parse(localStorage.getItem("tasks"));
+      setTaskData({
+        taskTitle: "",
+        taskDetail: "",
+        taskDueDate: "",
+        taskDueTime: "",
+        status: "scheduled",
+      });
+      let tasks;
+      if (localStorage.getItem("tasks") === null) {
+        tasks = [];
+      } else {
+        tasks = JSON.parse(localStorage.getItem("tasks"));
+      }
+      console.log(tasks);
+      tasks.push(taskData);
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+      setIsAddNewOpen(false);
+      setIsScheduledTaskOpen(true);
     }
-    console.log(tasks);
-    tasks.push(taskData);
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-    setIsAddNewOpen(false);
-    setIsScheduledTaskOpen(true);
   }
 
   return (
