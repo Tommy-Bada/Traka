@@ -1,10 +1,11 @@
 // eslint-disable-next-line react/prop-types
 function CompletedTaskBox({ title, description, status }) {
   return (
-    <li className={`task-box ${status}`}>
-      <h2>{title}</h2>
-      <pre>{description}</pre>
-      <p>{status}</p>
+    <li
+      className={`task-box ${status} text-left bg-[#D1D0F9] text-[#6368D9] p-[20px] rounded-2xl mb-[20px]`}
+    >
+      <h2 className="text-[#6368D9] text-[20px] mb-[10px]">{title}</h2>
+      <p className="mb-[10px]">{description}</p>
     </li>
   );
 }

@@ -2,27 +2,37 @@ import "./App.css";
 import Scheduled from "./components/Scheduled";
 import InProgress from "./components/InProgress";
 import Completed from "./components/Completed";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSquarePlus } from "@fortawesome/free-solid-svg-icons";
+import { faRectangleXmark } from "@fortawesome/free-solid-svg-icons";
+import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 
 function App() {
-  // Handle Click Interactions
+  // Handle Click Interactions Between Scheduled, In Progress, and Completed
   const [isScheduledTaskOpen, setIsScheduledTaskOpen] = useState(false);
   const [isInProgressTaskOpen, setIsInProgressTaskOpen] = useState(false);
   const [isCompletedTaskOpen, setIsCompletedTaskOpen] = useState(false);
+
   function handleShowScheduledTask() {
     setIsScheduledTaskOpen(true);
     setIsInProgressTaskOpen(false);
     setIsCompletedTaskOpen(false);
+    setIsAddNewOpen(false);
   }
+
   function handleShowInProgressTask() {
     setIsScheduledTaskOpen(false);
     setIsInProgressTaskOpen(true);
     setIsCompletedTaskOpen(false);
+    setIsAddNewOpen(false);
   }
+
   function handleShowCompletedTask() {
     setIsScheduledTaskOpen(false);
     setIsInProgressTaskOpen(false);
     setIsCompletedTaskOpen(true);
+    setIsAddNewOpen(false);
   }
 
   // Handle Add New Screen
@@ -34,7 +44,7 @@ function App() {
     setIsCompletedTaskOpen(false);
   }
 
-  //Handle Clear tasks
+  //Handle Clear Every Task
   function handleClearTaks() {
     localStorage.clear();
     setIsScheduledTaskOpen(false);
@@ -42,7 +52,7 @@ function App() {
     setIsCompletedTaskOpen(false);
   }
 
-  // Handle Task Form
+  // Handle Task Input
   const [taskData, setTaskData] = useState({
     taskTitle: "",
     taskDetail: "",
@@ -93,54 +103,101 @@ function App() {
 
   return (
     <>
-      <div>
-        <h1>Traka</h1>
-        <p onClick={handleAddNew}>{isAddNewOpen ? "x" : "+"}</p>
+      <div className="flex justify-between items-center mb-8">
+        <p className="pr-[0px]" onClick={handleAddNew}>
+          {isAddNewOpen ? (
+            <FontAwesomeIcon
+              icon={faRectangleXmark}
+              style={{ color: "#6369D9" }}
+              size="2xl"
+            />
+          ) : (
+            <FontAwesomeIcon
+              icon={faSquarePlus}
+              style={{ color: "#6369D9" }}
+              size="2xl"
+            />
+          )}
+        </p>
+        <p onClick={handleClearTaks}>
+          <FontAwesomeIcon
+            icon={faTrashCan}
+            size="xl"
+            style={{ color: "#6369D9" }}
+          />
+        </p>
       </div>
       <div>
-        <div>
-          <input type="text" placeholder="search task" />
-        </div>
-        <ul>
-          <li onClick={handleShowScheduledTask}>Scheduled Task</li>
-          <li onClick={handleShowInProgressTask}>In Progress</li>
-          <li onClick={handleShowCompletedTask}>Completed</li>
+        <ul className="flex items-center justify-between">
+          <li>
+            <button
+              className="bg-[#D3C7F5] text-[#6369D9] py-[5px] px-[15px] rounded-md"
+              onClick={handleShowScheduledTask}
+            >
+              To do
+            </button>
+          </li>
+          <li>
+            <button
+              className="bg-[#D3C7F5] text-[#6369D9] py-[5px] px-[15px] rounded-md"
+              onClick={handleShowInProgressTask}
+            >
+              In Progress
+            </button>
+          </li>
+          <li>
+            <button
+              className="bg-[#D3C7F5] text-[#6369D9] py-[5px] px-[15px] rounded-md"
+              onClick={handleShowCompletedTask}
+            >
+              Completed
+            </button>
+          </li>
         </ul>
-        <div>
-          <button onClick={handleClearTaks}>Clear All</button>
-        </div>
       </div>
       {isAddNewOpen && (
-        <form onSubmit={handleTaskSubmit}>
+        <form onSubmit={handleTaskSubmit} className="mt-[20px]">
           <input
+            className="w-[100%] p-[10px] my-[10px] border-2 border-[#6369D9] rounded-full placeholder:text-[#6368d9] text-[#6368d9]"
             type="text"
             placeholder="What do you want to do?"
             name="taskTitle"
             value={taskData.taskTitle}
             onChange={handleTaskInput}
           />
-          <input
-            type="paragraph"
+          <br />
+          <textarea
+            className="w-[100%] p-[10px] my-[10px] border-2 border-[#6369D9] rounded-md placeholder:text-[#6368d9] text-[#6368d9]"
             placeholder="Break it down"
             name="taskDetail"
             value={taskData.taskDetail}
             onChange={handleTaskInput}
-          />
+          ></textarea>
+          <br />
           <input
+            className="w-[100%] p-[10px] my-[10px] border-2 border-[#6369D9] rounded-full text-[#6368d9]"
             type="date"
             placeholder="Deadline"
             name="taskDueDate"
             value={taskData.taskDueDate}
             onChange={handleTaskInput}
           />
+          <br />
           <input
+            className="w-[100%] p-[10px] my-[10px] border-2 border-[#6369D9] rounded-full text-[#6368d9]"
             type="time"
             placeholder="Time"
             name="taskDueTime"
             value={taskData.taskDueTime}
             onChange={handleTaskInput}
           />
-          <button type="submit">Add Task</button>
+          <br />
+          <button
+            className="bg-[#6368D9] text-[#D1D0F9] text-[16px] text-center w-[100%]  mt-[20px] py-[10px] rounded-md"
+            type="submit"
+          >
+            Add Task
+          </button>
         </form>
       )}
 

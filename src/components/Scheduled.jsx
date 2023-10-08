@@ -3,6 +3,7 @@ import ScheduledTaskBox from "./ScheduledTaskBox";
 import { useEffect, useState } from "react";
 
 function Scheduled() {
+  // Get Data from Local Storage and Set State
   const [scheduledTasksData, setScheduledTasksData] = useState([]);
   useEffect(() => {
     const tasks = JSON.parse(localStorage.getItem("tasks"));
@@ -11,14 +12,13 @@ function Scheduled() {
     }
   }, []);
 
-  // Define a custom sorting function
+  // Handle Data Sorting according to Due Date and Time
   const [taskSorted, setTaskSorted] = useState(false);
 
   function sortByDateAndTime(tasks) {
     return tasks.slice().sort((a, b) => {
       const dateA = new Date(a.taskDueDate).getTime();
       const dateB = new Date(b.taskDueDate).getTime();
-      // console.log(typeof parseInt(a.taskDueTime), typeof b.taskDueTime);
       if (dateA === dateB) {
         const timeA = a.taskDueTime.split(":").map(Number);
         const timeB = b.taskDueTime.split(":").map(Number);
@@ -33,7 +33,7 @@ function Scheduled() {
       return dateA - dateB;
     });
   }
-  console.log(scheduledTasksData);
+
   // Usage in your component
   const handleSortByDateAndTime = () => {
     const sorted = sortByDateAndTime(scheduledTasksData);
@@ -42,6 +42,7 @@ function Scheduled() {
     setTaskSorted(true);
   };
 
+  //Handle Task Start
   const startTask = (title) => {
     const startedTasks = scheduledTasksData.map((task) =>
       task.taskTitle === title ? { ...task, status: "in-progress" } : task
@@ -51,6 +52,7 @@ function Scheduled() {
     setScheduledTasksData(startedTasks);
   };
 
+  //Handle Task Delete
   const deleteTask = (title) => {
     const deletedTasks = scheduledTasksData.filter(
       (task) => task.taskTitle !== title
@@ -59,8 +61,8 @@ function Scheduled() {
     setScheduledTasksData(deletedTasks);
   };
 
+  //Handle Editing Task
   const [isEditing, setIsEditing] = useState(false);
-
   const [updatedTask, setUpdatedTask] = useState([]);
   const [taskToUpdate, setTaskToUpdate] = useState("");
 
@@ -71,10 +73,12 @@ function Scheduled() {
     console.log(taskToEdit[0].taskTitle);
     setTaskToUpdate(taskToEdit[0].taskTitle);
     setUpdatedTask(taskToEdit[0]);
+    setTaskSorted(true);
 
     setIsEditing(true);
   };
 
+  //Control Update Form
   function handleChange(event) {
     setUpdatedTask((prevTaskData) => {
       return {
@@ -84,6 +88,7 @@ function Scheduled() {
     });
   }
 
+  //Handle Update after Editing
   function handleUpdate(event) {
     event.preventDefault();
     if (
@@ -105,38 +110,67 @@ function Scheduled() {
     }
   }
 
+  function handleBack() {
+    setIsEditing(false);
+  }
+
   return (
     <div>
-      <h2>Scheduled</h2>
-      {taskSorted || <button onClick={handleSortByDateAndTime}>Sort</button>}
+      <div className="my-[20px]">
+        {taskSorted || (
+          <button
+            className="bg-[#6368D9] text-white py-[5px] px-[15px] rounded-md w-[100%]"
+            onClick={handleSortByDateAndTime}
+          >
+            Sort
+          </button>
+        )}
+      </div>
       <div>
         {isEditing && (
           <form onSubmit={handleUpdate}>
             <input
+              className="w-[100%] p-[10px] my-[10px] border-2 border-[#6369D9] rounded-full placeholder:text-[#6368d9] text-[#6368d9]"
               type="text"
               name="taskTitle"
               value={updatedTask.taskTitle}
               onChange={handleChange}
             />
-            <input
+            <textarea
+              className="w-[100%] p-[10px] my-[10px] border-2 border-[#6369D9] rounded-md placeholder:text-[#6368d9] text-[#6368d9]"
               type="paragraph"
               name="taskDetail"
               value={updatedTask.taskDetail}
               onChange={handleChange}
-            />
+            ></textarea>
+
             <input
+              className="w-[100%] p-[10px] my-[10px] border-2 border-[#6369D9] rounded-full text-[#6368d9]"
               type="date"
               name="taskDueDate"
               value={updatedTask.taskDueDate}
               onChange={handleChange}
             />
             <input
+              className="w-[100%] p-[10px] my-[10px] border-2 border-[#6369D9] rounded-full text-[#6368d9]"
               type="time"
               name="taskDueTime"
               value={updatedTask.taskDueTime}
               onChange={handleChange}
             />
-            <button type="submit">Update Task</button>
+            <button
+              className="bg-[#6368D9] text-[#D1D0F9] text-[16px] text-center w-[100%] py-[5px]  mt-[20px] rounded-md"
+              type="submit"
+            >
+              Update Task
+            </button>
+            <button
+              className="bg-[#6368D9] text-[#D1D0F9] text-[16px] text-center w-[100%] py-[5px]  mt-[20px] rounded-md"
+              type="submit"
+              onClick={handleBack}
+            >
+              Cancel
+            </button>
           </form>
         )}
       </div>

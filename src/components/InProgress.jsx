@@ -20,8 +20,7 @@ function InProgress() {
   };
 
   return (
-    <div>
-      <h2>In Progress</h2>
+    <div className="mt-[20px]">
       <ul>
         {inProgressTasksData
           .filter((task) => task.status === "in-progress")

@@ -13,8 +13,7 @@ function Completed() {
   }, []);
 
   return (
-    <div>
-      <h2>Completed</h2>
+    <div className="mt-[20px]">
       <ul>
         {completedProgressTasksData
           .filter((task) => task.status === "completed")
