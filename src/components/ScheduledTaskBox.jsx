@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 // eslint-disable-next-line react/prop-types
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import { faEdit } from "@fortawesome/free-solid-svg-icons";
+// import { faTrash } from "@fortawesome/free-solid-svg-icons";
+// import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
 function ScheduledTaskBox({
@@ -17,40 +17,38 @@ function ScheduledTaskBox({
 }) {
   return (
     <li
-      className={`task-box ${status} text-left bg-[#D1D0F9] text-[#6368D9] p-[20px] rounded-2xl mb-[20px]`}
+      className={`task-box ${status} text-left bg-[#FFE4BA] text-black p-[20px] rounded-2xl mb-[20px]`}
     >
-      <h2 className="text-[#6368D9] text-[20px] mb-[10px]">
+      <h2 className=" text-[20px] mb-[10px]">
         <b>{title}</b>
       </h2>
       <pre className="mb-[10px]">{description}</pre>
       <div className="flex items-center justify-start mb-[20px]">
         <p className="mr-[10px]">
-          <FontAwesomeIcon icon={faCalendarDays} style={{ color: "#6368D9" }} />{" "}
+          <FontAwesomeIcon icon={faCalendarDays} style={{ color: "#000000" }} />{" "}
           {`${dueDate}`}
         </p>
         <p>
-          <FontAwesomeIcon icon={faClock} style={{ color: "#6368D9" }} />
+          <FontAwesomeIcon icon={faClock} style={{ color: "#000000" }} />
           {` ${dueTime}`}
         </p>
       </div>
       <div className="flex justify-between items-center">
-        <button onClick={onEdit}>
-          <FontAwesomeIcon
-            icon={faEdit}
-            style={{ color: "#6368D9" }}
-            size="lg"
-          />
+        <button
+          onClick={onEdit}
+          className="text-center bg-[#62EEA8] text-[16px] px-[10px] py-[5px] rounded-md mb-[10px] shadow-[0px_2px_0px_0px_#000000] border-[2px] border-black"
+        >
+          Edit
         </button>
-        <button onClick={onDelete}>
-          <FontAwesomeIcon
-            icon={faTrash}
-            style={{ color: "#6368D9" }}
-            size="lg"
-          />
+        <button
+          onClick={onDelete}
+          className=" text-center bg-[#FF9F9F] text-[16px] px-[10px] py-[5px] rounded-md mb-[10px] shadow-[0px_2px_0px_0px_#000000] border-[2px] border-black"
+        >
+          delete
         </button>
       </div>
       <p
-        className="bg-[#6368D9] text-[#D1D0F9] text-[16px] text-center w-[100%] py-[5px]  mt-[20px] rounded-md"
+        className="w-[100%] text-center bg-[#FFDE00] text-[16px] p-[10px] rounded-md  shadow-[0px_3px_0px_0px_#000000] border-[2px] border-black"
         onClick={onStart}
       >
         Start

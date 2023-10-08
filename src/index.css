@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 * {
-  font-family: poppins;
+  font-family: "Cabin";
 }
 body {
-  background-color: #efebfb;
+  background-color: #fff6e8;
 }

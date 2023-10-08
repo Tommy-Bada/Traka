@@ -15,24 +15,24 @@ function InProgressTaskBox({
 }) {
   return (
     <li
-      className={`task-box ${status} text-left bg-[#D1D0F9] text-[#6368D9] p-[20px] rounded-2xl mb-[20px]`}
+      className={`task-box ${status} text-left bg-[#FFE4BA] text-black p-[20px] rounded-2xl mb-[20px]`}
     >
-      <h2 className="text-[#6368D9] text-[20px] mb-[10px]">
+      <h2 className="text-[20px] mb-[10px]">
         <b>{title}</b>
       </h2>
       <pre className="mb-[10px]">{description}</pre>
       <div className="flex items-center justify-start mb-[20px]">
         <p className="mr-[10px]">
-          <FontAwesomeIcon icon={faCalendarDays} style={{ color: "#6368D9" }} />{" "}
+          <FontAwesomeIcon icon={faCalendarDays} style={{ color: "#000000" }} />{" "}
           {`${dueDate}`}
         </p>
         <p>
-          <FontAwesomeIcon icon={faClock} style={{ color: "#6368D9" }} />
+          <FontAwesomeIcon icon={faClock} style={{ color: "#000000" }} />
           {` ${dueTime}`}
         </p>
       </div>
       <p
-        className="bg-[#6368D9] text-[#D1D0F9] text-[16px] text-center w-[100%] py-[5px]  mt-[20px] rounded-md"
+        className="w-[100%] text-center bg-[#62EEA8] text-[16px] p-[10px] rounded-md  shadow-[0px_3px_0px_0px_#000000] border-[2px] border-black"
         onClick={onCompleted}
       >
         Complete

@@ -2,9 +2,9 @@
 function CompletedTaskBox({ title, description, status }) {
   return (
     <li
-      className={`task-box ${status} text-left bg-[#D1D0F9] text-[#6368D9] p-[20px] rounded-2xl mb-[20px]`}
+      className={`task-box ${status} text-left bg-[#FFE4BA] text-black p-[20px] rounded-2xl mb-[20px]`}
     >
-      <h2 className="text-[#6368D9] text-[20px] mb-[10px]">
+      <h2 className=" text-[20px] mb-[10px]">
         <b>{title}</b>
       </h2>
       <pre className="mb-[10px]">{description}</pre>

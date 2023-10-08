@@ -119,10 +119,10 @@ function Scheduled() {
       <div className="my-[20px]">
         {taskSorted || (
           <button
-            className="bg-[#6368D9] text-white py-[5px] px-[15px] rounded-md w-[100%]"
+            className="w-[100%] text-center bg-[#62EEA8] text-[16px] p-[10px] rounded-md mb-[10px] shadow-[0px_4px_0px_0px_#000000] border-[3px] border-black"
             onClick={handleSortByDateAndTime}
           >
-            Sort
+            Prioritize
           </button>
         )}
       </div>
@@ -130,14 +130,13 @@ function Scheduled() {
         {isEditing && (
           <form onSubmit={handleUpdate}>
             <input
-              className="w-[100%] p-[10px] my-[10px] border-2 border-[#6369D9] rounded-full placeholder:text-[#6368d9] text-[#6368d9]"
-              type="text"
+              className="w-[100%] p-[15px] text-[16px] mb-[10px]  rounded-md shadow-[3px_3px_3px_1px_rgba(0,0,0,0.25)]"
               name="taskTitle"
               value={updatedTask.taskTitle}
               onChange={handleChange}
             />
             <textarea
-              className="w-[100%] p-[10px] my-[10px] border-2 border-[#6369D9] rounded-md placeholder:text-[#6368d9] text-[#6368d9]"
+              className="w-[100%] p-[15px] text-[16px] mb-[10px] rounded-md shadow-[3px_3px_3px_1px_rgba(0,0,0,0.25)]"
               type="paragraph"
               name="taskDetail"
               value={updatedTask.taskDetail}
@@ -145,27 +144,27 @@ function Scheduled() {
             ></textarea>
 
             <input
-              className="w-[100%] p-[10px] my-[10px] border-2 border-[#6369D9] rounded-full text-[#6368d9]"
+              className="w-[100%] p-[15px] text-[16px] mb-[10px] rounded-md shadow-[3px_3px_3px_1px_rgba(0,0,0,0.25)]"
               type="date"
               name="taskDueDate"
               value={updatedTask.taskDueDate}
               onChange={handleChange}
             />
             <input
-              className="w-[100%] p-[10px] my-[10px] border-2 border-[#6369D9] rounded-full text-[#6368d9]"
+              className="w-[100%] p-[15px] text-[16px] mb-[10px] rounded-md shadow-[3px_3px_3px_1px_rgba(0,0,0,0.25)]"
               type="time"
               name="taskDueTime"
               value={updatedTask.taskDueTime}
               onChange={handleChange}
             />
             <button
-              className="bg-[#6368D9] text-[#D1D0F9] text-[16px] text-center w-[100%] py-[5px]  mt-[20px] rounded-md"
+              className="w-[100%] text-center bg-[#62EEA8] text-[16px] p-[10px] rounded-md shadow-[0px_4px_0px_0px_#000000] border-[3px] border-black my-[10px]"
               type="submit"
             >
               Update Task
             </button>
             <button
-              className="bg-[#6368D9] text-[#D1D0F9] text-[16px] text-center w-[100%] py-[5px]  mt-[20px] rounded-md"
+              className="w-[100%] text-center bg-[#FF9F9F] text-[16px] p-[10px] rounded-md mb-[30px] shadow-[0px_4px_0px_0px_#000000] border-[3px] border-black"
               type="submit"
               onClick={handleBack}
             >
