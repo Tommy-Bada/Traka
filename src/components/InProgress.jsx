@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import InProgressTaskBox from "./InprogressTaskBox";
+import InProgressTaskBox from "./InProgressTaskBox";
 
 function InProgress() {
   const [inProgressTasksData, setInProgressTasksData] = useState([]);
