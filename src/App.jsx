@@ -80,7 +80,7 @@ function App() {
       .catch((error) => {
         console.error(error.message);
         alert(
-          "It looks like you're not a registered user. Get started by signing up for an account."
+          "It looks like you're not a registered user. Get started by creating an account."
         );
       });
   }
