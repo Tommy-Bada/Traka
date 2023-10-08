@@ -4,6 +4,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
+
 function InProgressTaskBox({
   title,
   description,
@@ -17,7 +18,7 @@ function InProgressTaskBox({
       className={`task-box ${status} text-left bg-[#D1D0F9] text-[#6368D9] p-[20px] rounded-2xl mb-[20px]`}
     >
       <h2 className="text-[#6368D9] text-[20px] mb-[10px]">{title}</h2>
-      <p className="mb-[10px]">{description}</p>
+      <pre className="mb-[10px]">{description}</pre>
       <div className="flex items-center justify-start mb-[20px]">
         <p className="mr-[10px]">
           <FontAwesomeIcon icon={faCalendarDays} style={{ color: "#6368D9" }} />{" "}

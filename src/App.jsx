@@ -128,10 +128,10 @@ function App() {
         </p>
       </div>
       <div>
-        <ul className="flex items-center justify-between">
+        <ul className="sm:flex-col ">
           <li>
             <button
-              className="bg-[#D3C7F5] text-[#6369D9] py-[5px] px-[15px] rounded-md"
+              className="bg-[#D3C7F5] text-[#6369D9] py-[5px] px-[15px] rounded-md w-[100%] mb-[20px]"
               onClick={handleShowScheduledTask}
             >
               To do
@@ -139,7 +139,7 @@ function App() {
           </li>
           <li>
             <button
-              className="bg-[#D3C7F5] text-[#6369D9] py-[5px] px-[15px] rounded-md"
+              className="bg-[#D3C7F5] text-[#6369D9] py-[5px] px-[15px] rounded-md w-[100%] mb-[20px]"
               onClick={handleShowInProgressTask}
             >
               In Progress
@@ -147,7 +147,7 @@ function App() {
           </li>
           <li>
             <button
-              className="bg-[#D3C7F5] text-[#6369D9] py-[5px] px-[15px] rounded-md"
+              className="bg-[#D3C7F5] text-[#6369D9] py-[5px] px-[15px] rounded-md w-[100%]"
               onClick={handleShowCompletedTask}
             >
               Completed
@@ -158,7 +158,7 @@ function App() {
       {isAddNewOpen && (
         <form onSubmit={handleTaskSubmit} className="mt-[20px]">
           <input
-            className="w-[100%] p-[10px] my-[10px] border-2 border-[#6369D9] rounded-full placeholder:text-[#6368d9] text-[#6368d9]"
+            className="w-[100%] p-[10px] my-[10px] border-2 border-[#6369D9] rounded-full placeholder:text-[#D1D0F9] text-[#6368d9]"
             type="text"
             placeholder="What do you want to do?"
             name="taskTitle"
@@ -167,7 +167,7 @@ function App() {
           />
           <br />
           <textarea
-            className="w-[100%] p-[10px] my-[10px] border-2 border-[#6369D9] rounded-md placeholder:text-[#6368d9] text-[#6368d9]"
+            className="w-[100%] p-[10px] my-[10px] border-2 border-[#6369D9] rounded-md placeholder:text-[#D1D0F9] text-[#6368d9]"
             placeholder="Break it down"
             name="taskDetail"
             value={taskData.taskDetail}
