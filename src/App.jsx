@@ -179,6 +179,7 @@ function App() {
             type="date"
             onFocus={(e) => (e.target.type = "date")}
             onBlur={(e) => (e.target.type = "text")}
+            onMouseOut={(e) => (e.target.type = "text")}
             placeholder="Which day is your task due?"
             name="taskDueDate"
             value={taskData.taskDueDate}
@@ -190,6 +191,7 @@ function App() {
             type="time"
             onFocus={(e) => (e.target.type = "time")}
             onBlur={(e) => (e.target.type = "text")}
+            onMouseOut={(e) => (e.target.type = "text")}
             placeholder="What time is your task due?"
             name="taskDueTime"
             value={taskData.taskDueTime}
