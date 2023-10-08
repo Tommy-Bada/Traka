@@ -177,7 +177,9 @@ function App() {
           <input
             className="w-[100%] p-[10px] my-[10px] border-2 border-[#6369D9] rounded-full text-[#6368d9]"
             type="date"
-            placeholder="Deadline"
+            onFocus={(e) => (e.target.type = "date")}
+            onBlur={(e) => (e.target.type = "text")}
+            placeholder="Which day is your task due?"
             name="taskDueDate"
             value={taskData.taskDueDate}
             onChange={handleTaskInput}
@@ -186,7 +188,9 @@ function App() {
           <input
             className="w-[100%] p-[10px] my-[10px] border-2 border-[#6369D9] rounded-full text-[#6368d9]"
             type="time"
-            placeholder="Time"
+            onFocus={(e) => (e.target.type = "time")}
+            onBlur={(e) => (e.target.type = "text")}
+            placeholder="What time is your task due?"
             name="taskDueTime"
             value={taskData.taskDueTime}
             onChange={handleTaskInput}
