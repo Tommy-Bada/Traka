@@ -15,7 +15,6 @@ function InProgress() {
     const completedTasks = inProgressTasksData.map((task) =>
       task.taskTitle === title ? { ...task, status: "completed" } : task
     );
-    console.log(completedTasks, title);
     localStorage.setItem("tasks", JSON.stringify(completedTasks));
     setInProgressTasksData(completedTasks);
   };

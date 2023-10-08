@@ -37,7 +37,6 @@ function Scheduled() {
   // Usage in your component
   const handleSortByDateAndTime = () => {
     const sorted = sortByDateAndTime(scheduledTasksData);
-    console.log(sorted);
     setScheduledTasksData(sorted);
     setTaskSorted(true);
   };
@@ -47,7 +46,6 @@ function Scheduled() {
     const startedTasks = scheduledTasksData.map((task) =>
       task.taskTitle === title ? { ...task, status: "in-progress" } : task
     );
-    console.log(startedTasks);
     localStorage.setItem("tasks", JSON.stringify(startedTasks));
     setScheduledTasksData(startedTasks);
   };
@@ -70,7 +68,6 @@ function Scheduled() {
     const taskToEdit = scheduledTasksData.filter(
       (task) => task.taskTitle === title && task.status === "scheduled"
     );
-    console.log(taskToEdit[0].taskTitle);
     setTaskToUpdate(taskToEdit[0].taskTitle);
     setUpdatedTask(taskToEdit[0]);
     setTaskSorted(true);
@@ -99,7 +96,6 @@ function Scheduled() {
     ) {
       alert("Please input all your task information");
     } else {
-      console.log("this text", taskToUpdate);
       const updatedTasks = scheduledTasksData.filter(
         (task) => task.taskTitle !== taskToUpdate
       );

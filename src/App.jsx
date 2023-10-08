@@ -206,7 +206,6 @@ function App() {
       } else {
         tasks = JSON.parse(localStorage.getItem("tasks"));
       }
-      console.log(tasks);
       tasks.push(taskData);
       localStorage.setItem("tasks", JSON.stringify(tasks));
       setIsAddNewOpen(false);
