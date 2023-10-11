@@ -51,18 +51,22 @@ function App() {
   function authCreateAccountWithEmail() {
     const email = userData.email;
     const password = userData.password;
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        setIsUserSignedIn(true);
-        setUserData({
-          email: "",
-          password: "",
+    if (email == "" || password == "") {
+      alert("Please input an email and password for your account");
+    } else {
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          setIsUserSignedIn(true);
+          setUserData({
+            email: "",
+            password: "",
+          });
+        })
+        .catch((error) => {
+          console.error(error.message);
+          alert(error.message);
         });
-      })
-      .catch((error) => {
-        console.error(error.message);
-        alert(error.message);
-      });
+    }
   }
 
   //Sign In with Email and Password
