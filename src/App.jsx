@@ -61,6 +61,10 @@ function App() {
             email: "",
             password: "",
           });
+          if (userCredential.user.displayName !== null) {
+            const parts = userCredential.user.displayName.split(" ");
+            setFirstName(parts[0]);
+          }
         })
         .catch((error) => {
           console.error(error.message);
@@ -73,20 +77,28 @@ function App() {
   function authSignInWithEmail() {
     const email = userData.email;
     const password = userData.password;
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        setIsUserSignedIn(true);
-        setUserData({
-          email: "",
-          password: "",
+    if (email == "" || password == "") {
+      alert("Please input your email and password to sign in");
+    } else {
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          setIsUserSignedIn(true);
+          setUserData({
+            email: "",
+            password: "",
+          });
+          if (userCredential.user.displayName !== null) {
+            const parts = userCredential.user.displayName.split(" ");
+            setFirstName(parts[0]);
+          }
+        })
+        .catch((error) => {
+          console.error(error.message);
+          alert(
+            "It looks like you're not a registered user. Get started by creating an account."
+          );
         });
-      })
-      .catch((error) => {
-        console.error(error.message);
-        alert(
-          "It looks like you're not a registered user. Get started by creating an account."
-        );
-      });
+    }
   }
 
   //Sign Out
@@ -121,12 +133,20 @@ function App() {
           email: "",
           password: "",
         });
+        if (result.user.displayName !== null) {
+          const parts = result.user.displayName.split(" ");
+
+          setFirstName(parts[0]);
+        }
       })
       .catch((error) => {
         console.error(error.message);
         alert(error.message);
       });
   }
+
+  //Show name when signed in
+  const [firstName, setFirstName] = useState("there");
 
   // Handle Click Interactions Between Scheduled, In Progress, and Completed
   const [isScheduledTaskOpen, setIsScheduledTaskOpen] = useState(false);
@@ -223,6 +243,9 @@ function App() {
     <>
       {isUserSignedIn ? (
         <section id="logged-in-view">
+          <p className="mb-[1rem]">
+            Hey {firstName}, what do you want to do today?
+          </p>
           <div className="flex justify-between items-center mb-8">
             <p className="pr-[0px]" onClick={handleAddNew}>
               {isAddNewOpen ? (
@@ -235,6 +258,7 @@ function App() {
                 </p>
               )}
             </p>
+
             <p
               onClick={authSignOut}
               className=" text-center bg-[#FF9F9F] text-[16px] px-[15px] py-[5px] rounded-md mb-[10px] shadow-[0px_2px_0px_0px_#000000] border-[3px] border-black"
@@ -242,6 +266,7 @@ function App() {
               Sign Out
             </p>
           </div>
+
           <div>
             {isAddNewOpen && (
               <form onSubmit={handleTaskSubmit} className="my-[20px]">
