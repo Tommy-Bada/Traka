@@ -20,7 +20,7 @@ function InProgressTaskBox({
       <h2 className="text-[20px] mb-[10px]">
         <b>{title}</b>
       </h2>
-      <pre className="mb-[10px]">{description}</pre>
+      <pre className="mb-[10px] whitespace-pre-wrap ">{description}</pre>
       <div className="flex items-center justify-start mb-[20px]">
         <p className="mr-[10px]">
           <FontAwesomeIcon icon={faCalendarDays} style={{ color: "#000000" }} />{" "}

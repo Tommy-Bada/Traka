@@ -2,10 +2,6 @@ import "./App.css";
 import Scheduled from "./components/Scheduled";
 import InProgress from "./components/InProgress";
 import Completed from "./components/Completed";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faSquarePlus } from "@fortawesome/free-solid-svg-icons";
-// import { faRectangleXmark } from "@fortawesome/free-solid-svg-icons";
-// import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import google from "./assets/google.png";
 import { useEffect, useState } from "react";
 
@@ -153,6 +149,7 @@ function App() {
   const [isInProgressTaskOpen, setIsInProgressTaskOpen] = useState(false);
   const [isCompletedTaskOpen, setIsCompletedTaskOpen] = useState(false);
 
+  //Function to show scheduled task
   function handleShowScheduledTask() {
     setIsScheduledTaskOpen(true);
     setIsInProgressTaskOpen(false);
@@ -160,13 +157,14 @@ function App() {
     setIsAddNewOpen(false);
   }
 
+  //Function to show tasks in progress
   function handleShowInProgressTask() {
     setIsScheduledTaskOpen(false);
     setIsInProgressTaskOpen(true);
     setIsCompletedTaskOpen(false);
     setIsAddNewOpen(false);
   }
-
+  //Function to show completed tasks
   function handleShowCompletedTask() {
     setIsScheduledTaskOpen(false);
     setIsInProgressTaskOpen(false);
@@ -209,6 +207,7 @@ function App() {
     });
   }
 
+  // Handle Task Submit
   function handleTaskSubmit(event) {
     event.preventDefault();
     if (
@@ -292,7 +291,6 @@ function App() {
                   type="date"
                   onFocus={(e) => (e.target.type = "date")}
                   onBlur={(e) => (e.target.type = "text")}
-                  // onMouseOut={(e) => (e.target.type = "text")}
                   placeholder="Which day is your task due?"
                   name="taskDueDate"
                   value={taskData.taskDueDate}
@@ -304,7 +302,6 @@ function App() {
                   type="time"
                   onFocus={(e) => (e.target.type = "time")}
                   onBlur={(e) => (e.target.type = "text")}
-                  // onMouseOut={(e) => (e.target.type = "text")}
                   placeholder="What time is your task due?"
                   name="taskDueTime"
                   value={taskData.taskDueTime}

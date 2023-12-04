@@ -7,7 +7,7 @@ function CompletedTaskBox({ title, description, status }) {
       <h2 className=" text-[20px] mb-[10px]">
         <b>{title}</b>
       </h2>
-      <pre className="mb-[10px]">{description}</pre>
+      <pre className="mb-[10px] whitespace-pre-wrap">{description}</pre>
     </li>
   );
 }

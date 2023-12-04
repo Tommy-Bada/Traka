@@ -106,6 +106,7 @@ function Scheduled() {
     }
   }
 
+  //Handle back button if user cancel editing
   function handleBack() {
     setIsEditing(false);
   }

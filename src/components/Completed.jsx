@@ -5,6 +5,7 @@ function Completed() {
     []
   );
 
+  // Get completed task from Local Storage and Set State
   useEffect(() => {
     const tasks = JSON.parse(localStorage.getItem("tasks"));
     if (tasks) {
